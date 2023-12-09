@@ -1,8 +1,3 @@
-### File copied from ViNT, will properly using it as a library later!
-###
-###
-###
-
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,7 +7,7 @@ import wandb
 import yaml
 import torch
 import torch.nn as nn
-from visualize_utils import (
+from vint_train.visualizing.visualize_utils import (
     to_numpy,
     numpy_to_img,
     VIZ_IMAGE_SIZE,
