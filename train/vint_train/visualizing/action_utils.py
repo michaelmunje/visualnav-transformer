@@ -1,3 +1,8 @@
+### File copied from ViNT, will properly using it as a library later!
+###
+###
+###
+
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,7 +12,7 @@ import wandb
 import yaml
 import torch
 import torch.nn as nn
-from vint_train.visualizing.visualize_utils import (
+from visualize_utils import (
     to_numpy,
     numpy_to_img,
     VIZ_IMAGE_SIZE,
@@ -149,6 +154,8 @@ def compare_waypoints_pred_to_label(
         traj_colors=[CYAN, MAGENTA],
         point_colors=[GREEN, RED],
     )
+    
+    # ax[1].imshow(obs_img)
     plot_trajs_and_points_on_image(
         ax[1],
         obs_img,
@@ -201,6 +208,8 @@ def plot_trajs_and_points_on_image(
         dataset_name in data_config
     ), f"Dataset {dataset_name} not found in data/data_config.yaml"
 
+    # resize to VIZ_IMAGE_SIZE = (640, 480)
+    img = cv2.resize(img, VIZ_IMAGE_SIZE)
     ax.imshow(img)
     if (
         "camera_metrics" in data_config[dataset_name]
