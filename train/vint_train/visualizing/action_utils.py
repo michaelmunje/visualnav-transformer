@@ -140,14 +140,18 @@ def compare_waypoints_pred_to_label(
     start_pos = np.array([0, 0])
     if len(pred_waypoints.shape) > 2:
         trajs = [*pred_waypoints, label_waypoints]
+        traj_colors = [CYAN for _ in range(len(pred_waypoints))] + [MAGENTA]
+        traj_labels = [f"prediction {i + 1}" for i in range(len(pred_waypoints))] + ["ground truth"]
     else:
         trajs = [pred_waypoints, label_waypoints]
+        traj_colors = [CYAN, MAGENTA]
+        traj_labels = ["prediction", "ground truth"]
     plot_trajs_and_points(
         ax[0],
         trajs,
         [start_pos, goal_pos],
-        traj_colors=[CYAN, MAGENTA],
-        point_colors=[GREEN, RED],
+        traj_colors=traj_colors,
+        traj_labels=traj_labels,
     )
     
     # ax[1].imshow(obs_img)
@@ -157,8 +161,7 @@ def compare_waypoints_pred_to_label(
         dataset_name,
         trajs,
         [start_pos, goal_pos],
-        traj_colors=[CYAN, MAGENTA],
-        point_colors=[GREEN, RED],
+        traj_colors=traj_colors,
     )
     ax[2].imshow(goal_img)
 
